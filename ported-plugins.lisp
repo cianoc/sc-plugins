@@ -52,7 +52,7 @@
 
 ;; NeoVarSaw
 ;; This is the mutable instruments variable saw
-(sc::defugen (mut-var-saw "NeoVarSawOsc")
+(sc::defugen (mutable-var-saw "NeoVarSawOsc")
     (freq &key (pw 0.5) (waveshape 0.5))
   ((:ar (sc::multinew sc::new 'sc::ugen freq pw waveshape))
    (:kr (sc::multinew sc::new 'sc::ugen freq pw waveshape))))
@@ -176,7 +176,7 @@
 ;; 12 db slope obviously
 ;; based upon the Oberheim classic.
 
-(sc::defugen (va-korg35 "VAKorg35")
+(sc::defugen (va-sem12 "VASEM12")
     (in &key (freq 500) (res 0.1) (transition 0.0))
   ((:ar (sc::multinew sc::new 'sc::ugen in freq res transition))
    (:kr (sc::multinew sc::new 'sc::ugen in freq res transition))))

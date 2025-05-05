@@ -1,8 +1,5 @@
 (in-package :sc-plugins)
 
-;; Easy
-;; - Werner (rename as it's a filter)
-
 ;; This plugin is an analog tape chew emulation algorithm by Jatin Chowdhury
 ;; - Depth controls how deep the tape is chewed. 0.0 to 1.0.
 ;; - freq Frequency controls how much space there is between bits of tape that have been chewed up. Useful to toggle randomly between 0 and 1.
@@ -150,7 +147,7 @@
 ;;
 ;; shelvingfreq
 ;; The center frequency of the EQ filter
-(sc::defugen (analog-vintage-distortion "AnalogVintageDistortion")
+(sc::defugen (analog-vintage-distort "AnalogVintageDistortion")
     (in &key (drive-gain 0.5) (bias 0) (low-gain 0.1) (high-gain 0.1) (shelving-freq 600) oversample)
   ((:ar (sc::multinew sc::new 'sc::ugen in drive-gain bias low-gain high-gain shelving-freq
                       (cond ((null oversample ) 0)

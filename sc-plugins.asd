@@ -8,4 +8,5 @@
   :serial t
   :components ((:file "package")
                (:file "nhthn")
-               (:file "ported-plugins")))
+               (:file "ported-plugins")
+               (:file "chow-dsp")))
