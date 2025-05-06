@@ -1,9 +1,9 @@
 (in-package :sc-plugins)
 
 ;; TODO Rates Checking required
+;; - chen
 ;; - FVerb
 ;; - lpg
-;; - chen
 ;; - rongs
 ;; - string-voice
 
@@ -103,6 +103,13 @@
 (sc::defugen (resonator "Resonator")
     (in &key (freq 100) (position 0.001) (resolution 24) (structure 0.5) (brightness 0.5) (damping 0.5))
   ((:ar (sc::multinew sc::new 'sc::ugen in freq position resolution structure brightness damping))))
+
+
+;; Extended Karplus-Strong.
+;; Taken from mutable instruments
+(sc::defugen (string-voice "StringVoice")
+    (&key (trig 0) (inf-sustain 0) (freq 100) (accent 0.5) (structure 0.5) (brightness 0.5) (damping 0.5))
+  ((:ar (sc::multinew sc::new 'sc::ugen trig inf-sustain freq accent structure brightness damping))))
 
 ;; Odin2 filter, based upon work of Will Pirkle and Zavalishin.
 ;; Virtual Analog 1 pole filter

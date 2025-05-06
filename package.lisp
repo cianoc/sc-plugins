@@ -14,6 +14,7 @@
            #:non-linear-filter
            #:osc-bank
            #:resonator
+           #:string-voice
            #:va-1pole
            #:va-diode-filter
            #:va-korg35
