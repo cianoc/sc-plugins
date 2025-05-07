@@ -1,9 +1,6 @@
 (in-package :sc-plugins)
 
 ;; TODO Rates Checking required
-;; - chen
-;; - FVerb
-;; - lpg
 ;; - rongs
 ;; - string-voice
 
@@ -31,6 +28,13 @@
   ((:ar (sc::multinew sc::new 'sc::ugen freq pulse-width waveform))
    (:kr (sc::multinew sc::new 'sc::ugen freq pulse-width waveform))))
 
+(sc::defugen (chen "Chen")
+    (&key (speed 0.5) (a 0.5) (b 0.3) (c 0.28))
+  ((:ar (sc::multinew sc::new 'sc::ugen speed a b c))
+   (:kr (sc::multinew sc::new 'sc::ugen speed a b c)))
+  :check-fn (sc::check-rates :audio '((:control :scalar) (:control :scalar) (:control :scalar) (:control :scalar))
+                             :control '((:control :scalar) (:control :scalar) (:control :scalar) (:control :scalar))))
+
 ;; mutable instruments var saw
 (sc::defugen (lockhart-wavefolder "LockhartWavefolder")
     (in &key (num-cells 4) )
@@ -42,6 +46,25 @@
     (in &key (side-chain-in 0) (side-chain 0) (ratio 4) (threshold -40) (attack 0.1) (release 100.1) (makeup 0.5) (auto-makeup t))
   ((:ar (sc::multinew sc::new 'sc::ugen in side-chain-in side-chain ratio threshold attack release makeup
                       (if auto-makeup 1.0 0.0)))))
+
+(sc::defugen (fverb "Fverb")
+    (in0 in1 &key (pre-delay 0) (input-amount 100) (input-lowpass-cutoff 10000) (input-highpass-cutoff 100)
+         (input-diffusion1 75) (input-diffusion2 62.5) (tail-density 70) (decay 50) (damping 5500)
+         (modulator-frequency 1) (modulator-depth 0.5))
+  ((:ar (sc::multinew sc::new 'sc::ugen in0 in1 pre-delay input-amount input-lowpass-cutoff input-highpass-cutoff 
+                      input-diffusion1 input-diffusion2 tail-density decay damping
+                      modulator-frequency modulator-depth))
+   (:kr (sc::multinew sc::new 'sc::ugen in0 in1 pre-delay input-amount input-lowpass-cutoff input-highpass-cutoff 
+                      input-diffusion1 input-diffusion2 tail-density decay damping
+                      modulator-frequency modulator-depth)))
+  :check-fn (sc::check-rates :audio '(:audio :audio)))
+
+
+(sc::defugen (lpg "LPG")
+    (in control-input &key (control-offset 0) (control-scale 1) (vca 1) (resonance 1.5) (low-pass-mode 1) (linearity 1))
+  ((:ar (sc::multinew sc::new 'sc::ugen in control-input control-offset control-scale vca resonance low-pass-mode linearity)))
+  :check-fn (sc::check-rates :audio '(:audio (:audio :control) (:control :scalar) (:control :scalar)
+                                      (:control :scalar) (:control :scalar) (:control :scalar) (:control :scalar))))
 
 ;; mutable instruments
 ;; formant oscillator with aliasing free phase reset
