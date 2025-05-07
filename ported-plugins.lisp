@@ -1,11 +1,6 @@
 (in-package :sc-plugins)
 
-;; TODO Rates Checking required
-;; - rongs
-;; - string-voice
-
 ;; An array is passed in
-;; - harmonic osc
 ;; 
 
 ;; TODO ChowDSP (separate file)
@@ -35,12 +30,6 @@
   :check-fn (sc::check-rates :audio '((:control :scalar) (:control :scalar) (:control :scalar) (:control :scalar))
                              :control '((:control :scalar) (:control :scalar) (:control :scalar) (:control :scalar))))
 
-;; mutable instruments var saw
-(sc::defugen (lockhart-wavefolder "LockhartWavefolder")
-    (in &key (num-cells 4) )
-  ((:ar (sc::multinew sc::new 'sc::ugen in num-cells))
-   (:kr (sc::multinew sc::new 'sc::ugen in num-cells))))
-
 ;; Ported from DairyDSP library
 (sc::defugen (d-compressor "DCompressor")
     (in &key (side-chain-in 0) (side-chain 0) (ratio 4) (threshold -40) (attack 0.1) (release 100.1) (makeup 0.5) (auto-makeup t))
@@ -59,6 +48,15 @@
                       modulator-frequency modulator-depth)))
   :check-fn (sc::check-rates :audio '(:audio :audio)))
 
+(sc::defugen (harmonic-osc "HarmonicOsc")
+    (&key (freq 100) (first-harmonic 1) amps)
+  ((:ar (sc::multinew-list sc::new 'multiout-ugen (append (list freq first-harmonic) amps)))))
+
+;; mutable instruments var saw
+(sc::defugen (lockhart-wavefolder "LockhartWavefolder")
+    (in &key (num-cells 4) )
+  ((:ar (sc::multinew sc::new 'sc::ugen in num-cells))
+   (:kr (sc::multinew sc::new 'sc::ugen in num-cells))))
 
 (sc::defugen (lpg "LPG")
     (in control-input &key (control-offset 0) (control-scale 1) (vca 1) (resonance 1.5) (low-pass-mode 1) (linearity 1))
@@ -127,6 +125,24 @@
     (in &key (freq 100) (position 0.001) (resolution 24) (structure 0.5) (brightness 0.5) (damping 0.5))
   ((:ar (sc::multinew sc::new 'sc::ugen in freq position resolution structure brightness damping))))
 
+
+(sc::defugen (rongs "Rongs")
+    (&key (trig 0) (sustain 1) (f0 0.01) (structure 0.5) (brightness 0.5) (damping 0.75) (accent 0.9)
+          (stretch 0.5) (position 0.15) (loss 0.15) (mode-num 2) (cos-freq 0.25))
+  ((:ar (sc::multinew sc::new 'sc::ugen trig sustain f0 structure brightness damping accent stretch position loss mode-num cos-freq)))
+  :check-fn (sc::check-rates :audio '((:audio :scalar control)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)
+                                      (:control :scalar)                                      
+                                      :scalar
+                                      :scalar)))
 
 ;; Extended Karplus-Strong.
 ;; Taken from mutable instruments

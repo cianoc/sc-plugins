@@ -1,19 +1,25 @@
 (defpackage #:sc-plugins
   (:use #:cl #:cl-collider)
   (:export #:safety-limiter
+           #:safety-limiter
            
            ;; ported-plugins
            #:kick-808
            #:snare-808
            #:analog-fold-osc
            #:bl-osc
-           #:lockhart-wavefolder
+           #:chen
            #:d-compressor
-           #:neo-formant
+           #:fverb
+           #:harmonic-osc
+           #:lockhart-wavefolder
+           #:lpg
            #:mutable-var-saw
+           #:neo-formant
            #:non-linear-filter
            #:osc-bank
            #:resonator
+           #:rongs
            #:string-voice
            #:va-1pole
            #:va-diode-filter

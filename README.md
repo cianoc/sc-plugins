@@ -6,16 +6,16 @@ Currently this project is in the super early phases. The code _should_ work, but
 The API is currently in flux, as is the naming of ugens. I can be influenced by feedback and bribes ;)
 
 Currently complete:
-- [x] https://github.com/nhthn/supercollider-safety-limiter - a transparent brickwall limiter that's perfect for the end of your signal chain.
+- [x] ~~https://github.com/nhthn/supercollider-safety-limiter - a transparent brickwall limiter that's perfect for the end of your signal chain.~~
+- [x] ~~https://github.com/madskjeldgaard/portedplugins - a collection of really great, really high quality, analog modeled ugens from filters to distortions, to tape saturation and even 808 emulations. Amazing stuff. You can emulate a Buchla with this library. Also has some mutable instruments stuff that is nice and Jay Chowdhury's work.~~
+- [x] ~~https://github.com/nhthn/supercollider-pll/tree/develop - interesting distortion effect~~
 
 In progress:
-- https://github.com/madskjeldgaard/portedplugins - a collection of really great, really high quality, analog modeled ugens from filters to distortions, to tape saturation and even 808 emulations. Amazing stuff. You can emulate a Buchla with this library. Also has some mutable instruments stuff that is nice and Jay Chowdhury's work.
+- https://github.com/madskjeldgaard/guttersynth-sc - weird chaotic oscillator from Tom Mudd.
 
 The following are planned:
 - [ ] https://github.com/cianoc/cian-plugins - something I wrote years about, and had totally forgotten about. Probably needs a cleanup, but improves on the regular FBOscillator in a couple of ways. Simple but fun.
-- [ ] https://github.com/madskjeldgaard/guttersynth-sc - weird chaotic oscillator from Tom Mudd.
 - [ ] https://github.com/spluta/OversamplingOscillators - modern oversampling oscillators, including some stuff you wouldn't expect.
-- [ ] https://github.com/nhthn/supercollider-pll/tree/develop - interesting distortion effect
 
 Don't see an extension that you really want on this list? Add an issue as I probably don't know about it.
 
