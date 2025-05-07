@@ -9,4 +9,5 @@
   :components ((:file "package")
                (:file "nhthn")
                (:file "ported-plugins")
-               (:file "chow-dsp")))
+               (:file "chow-dsp")
+               (:file "utils")))
