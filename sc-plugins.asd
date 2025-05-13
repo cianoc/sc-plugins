@@ -7,7 +7,7 @@
   :depends-on (#:cl-collider)
   :serial t
   :components ((:file "package")
-               (:file "nhthn")
+               ;;               (:file "nhthn")
                (:file "ported-plugins")
                (:file "chow-dsp")
                (:file "utils")))
