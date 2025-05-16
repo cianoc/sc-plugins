@@ -1,4 +1,4 @@
-(in-package :sc-plugins)
+(in-package :cl-collider)
 
 (sc::defugen (analog-chew "AnalogChew")
     (in &key (depth 0.5) (freq 0.5) (variance 0.5))
@@ -7,7 +7,7 @@
 (sc::defugen (analog-degrade "AnalogDegrade")
     (in &key (depth 0.5) (amount 0.5) (variance 0.5) (envelope 0.5))
   ((:ar (sc::multinew sc::new 'sc::ugen in depth amount variance envelope))))
-.
+
 (sc::defugen (analog-loss "AnalogLoss")
     (in &key (gap 0.5) (thick 0.5) (space 0.5) (speed 0.5))
   ((:ar (sc::multinew sc::new 'sc::ugen in gap thick space speed))))

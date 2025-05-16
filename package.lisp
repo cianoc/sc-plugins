@@ -1,4 +1,4 @@
-(defpackage #:sc-plugins
+(defpackage #:sc-plug
   (:use #:cl #:cl-collider)
   ;; (:export #:safety-limiter
   ;;          #:safety-limiter
